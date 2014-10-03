@@ -1,0 +1,8 @@
+{
+	"name": "google_drive",
+	"description": "imgration for google drive",
+	"dependencies": {
+		"googleapis": "1.0.14",
+		"readline": "0.0.3"
+	}
+}
