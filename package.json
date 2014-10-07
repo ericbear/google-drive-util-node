@@ -1,33 +1,36 @@
 {
-	"name": "google-drive-util",
-	"description": "utility tools for google-drive since its document is really well !!",
-    "version": "0.0.1",
-    "author": {
-        "name": "EricBear",
-        "email": "ericbear1130@gmail.com"
-    },
-	"dependencies": {
-		"googleapis": "1.0.14",
-		"deasync": "0.0.7"
-	},
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ericbear/google-drive-util-node.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ericbear/google-drive-util-node/issues"
-    },
-    "license": "MIT",
-    "homepage": "https://github.com/ericbear/google-drive-util-node",
-    "keywords": [
-        "googleapis",
-        "google drive",
-        "node.js"
-    ],
-    "main": "google_drive_util.js",
-    "engines": {
-        "node": ">=0.10"
-    },
-    "readmeFilename": "README.md",
-    "private": true
+  "name": "google-drive-util",
+  "description": "utility tools for google-drive since its document is really well !!",
+  "version": "0.0.1",
+  "author": "EricBear <ericbear1130@gmail.com>",
+  "dependencies": {
+    "googleapis": "1.0.14",
+    "deasync": "0.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericbear/google-drive-util-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ericbear/google-drive-util-node/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ericbear/google-drive-util-node",
+  "keywords": [
+    "googleapis",
+    "google drive",
+    "node.js"
+  ],
+  "main": "google_drive_util.js",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "private": true,
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
