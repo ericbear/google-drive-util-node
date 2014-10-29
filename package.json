@@ -5,7 +5,7 @@
   "author": "EricBear <ericbear1130@gmail.com>",
   "dependencies": {
     "googleapis": "1.0.14",
-    "deasync": "0.0.7"
+    "readline-sync": "0.4.9"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,6 @@
 var google = require('googleapis');
-var readline = require('readline');
+var readline = require('readline-sync');
 var fs = require("fs");
-
-var desync = require('deasync');
 
 var OAUTH_SETTING_FILE = "google.conf";
 var OAUTH_FILE = "google.auth";
@@ -10,54 +8,25 @@ var OAUTH_FILE = "google.auth";
 var OAuth2Client = google.auth.OAuth2;
 var drive = google.drive('v2');
 
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
 function createOAuth2Client(settings) {
     return new OAuth2Client(    settings.CLIENT_ID,
                                 settings.CLIENT_SECRET,
                                 settings.REDIRECT_URL);
 }
 
-function readLine(msg, callback)
-{
-    rl.question(msg, callback);
-}
-
 function readLineSync(msg)
 {
-    var answer;
-    
-    rl.question(msg, function(_answer) {
-        answer = _answer;
-    });
-    
-    while (answer === undefined) {
-        desync.runLoopOnce();
-    }
-    
-    return answer;
+    return readline.question(msg);
 }
 
-function _readLines(msgs, index, callback)
+function readLinesSync(msgs, callback)
 {
-    if (index >= msgs.length) {
-        callback(msgs);
+    for (var i=0; i<msgs.length; i++)
+    {
+        msgs[i] = readLineSync(msgs[i]);
     }
-    else {
-        readLine(msgs[index], function(ans) {
-            msgs[index] = ans;
-            
-            _readLines(msgs, index+1, callback);
-        });
-    }
-}
-
-function readLines(msgs, callback)
-{
-    _readLines(msgs, 0, callback);
+    
+    callback(msgs);
 }
 
 function askAccessToken(settings, oauth, callback) {
@@ -69,10 +38,9 @@ function askAccessToken(settings, oauth, callback) {
 
     console.log('Visit the url: ', url);
     
-    readLine('Enter the code here:', function(code) {
-        // request access token
-        oauth.getToken(code, callback);
-    });
+    var code = readLineSync('Enter the code here:');
+    // request access token
+    oauth.getToken(code, callback);
 }
 
 function saveAccessToken(callback) {
@@ -276,9 +244,8 @@ function searchFilesByTitle(oauth, keyword, max_results, callback)
                     });
 }
 
-module.exports.readLine = readLine;
 module.exports.readLineSync = readLineSync;
-module.exports.readLines = readLines;
+module.exports.readLinesSync = readLinesSync;
 
 module.exports.saveAccessToken = saveAccessToken;
 module.exports.readToken = readToken;
